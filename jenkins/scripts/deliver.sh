@@ -20,8 +20,9 @@ set -x
 VERSION=`mvn -q -DforceStdout help:evaluate -Dexpression=project.version`
 set +x
 
-NAME=$(echo $NAME | tr -d '[:cntrl:]')
-VERSION=$(echo $VERSION | tr -d '[:cntrl:]')
+NAME=$(echo $NAME | sed -E 's/\x1B\[[0-9;]*m//g')
+VERSION=$(echo $VERSION | sed -E 's/\x1B\[[0-9;]*m//g')
+
 
 echo 'NAME and Version'
 echo ${NAME}
