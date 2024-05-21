@@ -20,6 +20,9 @@ set -x
 VERSION=`mvn -q -DforceStdout help:evaluate -Dexpression=project.version`
 set +x
 
+NAME=$(echo $NAME | tr -d '[:cntrl:]')
+VERSION=$(echo $VERSION | tr -d '[:cntrl:]')
+
 echo 'NAME and Version'
 echo ${NAME}
 echo ${VERSION}
